@@ -236,6 +236,9 @@ subjects:
 - kind: ServiceAccount
   name: nodecontribution
   namespace: edgenet
+- kind: ServiceAccount
+  name: edgenet-public
+  namespace: kube-system
 ---
 apiVersion: apps/v1
 kind: Deployment
