@@ -699,7 +699,7 @@ func getSSHConfigurations() (ssh.Signer, ssh.HostKeyCallback, bool) {
 func (c *Controller) join(conn *ssh.Client, nodeName string, done chan<- bool) {
 	commands := []string{
 		"sudo su",
-		"kubeadm reset -f",
+		"/usr/bin/kubeadm reset -f",
 		c.multiproviderManager.CreateJoinToken("30m", nodeName),
 	}
 	sess, err := startSession(conn)
