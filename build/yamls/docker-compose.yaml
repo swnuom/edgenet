@@ -7,7 +7,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/nodelabeler/Dockerfile
-    image: nodelabeler:v1.0.0
+    image: swnuom/nodelabeler:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
   selectivedeployment:
@@ -16,7 +16,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/selectivedeployment/Dockerfile
-    image: selectivedeployment:v1.0.0
+    image: swnuom/selectivedeployment:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
   tenant:
@@ -25,7 +25,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/tenant/Dockerfile
-    image: tenant:v1.0.0
+    image: swnuom/tenant:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
   tenantrequest:
@@ -34,7 +34,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/tenantrequest/Dockerfile
-    image: tenantrequest:v1.0.0
+    image: swnuom/tenantrequest:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
   rolerequest:
@@ -43,7 +43,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/rolerequest/Dockerfile
-    image: rolerequest:v1.0.0
+    image: swnuom/rolerequest:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
   nodecontribution:
@@ -52,7 +52,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/nodecontribution/Dockerfile
-    image: nodecontribution:v1.0.0
+    image: swnuom/nodecontribution:v1.0.0
     volumes:
       - /etc/kubernetes/:/etc/kubernetes/
       - ~/.kube/:/edgenet/.kube/
@@ -63,7 +63,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/tenantresourcequota/Dockerfile
-    image: tenantresourcequota:v1.0.0
+    image: swnuom/tenantresourcequota:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
   subnamespace:
@@ -72,7 +72,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/subnamespace/Dockerfile
-    image: subnamespace:v1.0.0
+    image: swnuom/subnamespace:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
   vpnpeer:
@@ -81,7 +81,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/vpnpeer/Dockerfile
-    image: vpnpeer:v1.0.0
+    image: swnuom/vpnpeer:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
     network_mode: host
@@ -93,7 +93,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/notifier/Dockerfile
-    image: notifier:v1.0.0
+    image: swnuom/notifier:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
       - ../assets/templates/:/edgenet/assets/templates/
@@ -103,7 +103,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/clusterrolerequest/Dockerfile
-    image: clusterrolerequest:v1.0.0
+    image: swnuom/clusterrolerequest:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
   sliceclaim:
@@ -112,7 +112,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/sliceclaim/Dockerfile
-    image: sliceclaim:v1.0.0
+    image: swnuom/sliceclaim:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
   slice:
@@ -121,7 +121,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/slice/Dockerfile
-    image: slice:v1.0.0
+    image: swnuom/slice:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
   fedlet:
@@ -130,7 +130,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/fedlet/Dockerfile
-    image: fedlet:v1.0.0
+    image: swnuom/fedlet:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
   cluster:
@@ -139,7 +139,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/cluster/Dockerfile
-    image: cluster:v1.0.0
+    image: swnuom/cluster:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
   managercache:
@@ -148,7 +148,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/managercache/Dockerfile
-    image: managercache:v1.0.0
+    image: swnuom/managercache:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
   selectivedeploymentanchor:
@@ -157,7 +157,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/selectivedeploymentanchor/Dockerfile
-    image: selectivedeploymentanchor:v1.0.0
+    image: swnuom/selectivedeploymentanchor:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
   fedscheduler:
@@ -166,7 +166,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/fedscheduler/Dockerfile
-    image: fedscheduler:v1.0.0
+    image: swnuom/fedscheduler:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
   clusterlabeler:
@@ -175,7 +175,7 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/clusterlabeler/Dockerfile
-    image: clusterlabeler:v1.0.0
+    image: swnuom/clusterlabeler:v1.0.0
     volumes:
       - ~/.kube/:/edgenet/.kube/
   admissioncontrol:
@@ -184,4 +184,4 @@ services:
     build:
       context: ../../
       dockerfile: ./build/images/admissioncontrol/Dockerfile
-    image: admissioncontrol:v1.0.0
+    image: swnuom/admissioncontrol:v1.0.0
