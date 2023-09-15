@@ -17,6 +17,9 @@ USER edgenet:edgenet
 WORKDIR /edgenet/nodecontribution/
 COPY --from=build --chown=edgenet:edgenet /edgenet/nodecontribution ./
 
-RUN mkdir /edgenet/.kube/
+# Explicitly set permissions and ownership for the .kube directory
+USER root:root
+RUN mkdir /edgenet/.kube && chown edgenet:edgenet /edgenet/.kube && chmod 700 /edgenet/.kube
+USER edgenet:edgenet
 
 CMD ["./nodecontribution"]
