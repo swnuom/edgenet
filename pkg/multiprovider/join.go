@@ -140,7 +140,7 @@ func (m *Manager) createToken(duration time.Duration, hostname string) (string, 
 	}
         log.Printf("specifying kubeconfig path")
 	// This is to get server info
-	kubeconfigPath := "/edgenet/.kube/config"
+	kubeconfigPath := "/clusterslice/.kube/config"
 	if flag.Lookup("kubeconfig-path") != nil {
 		log.Printf("flag kubeconfig-path is null")
 		kubeconfigPath = flag.Lookup("kubeconfig-path").Value.(flag.Getter).Get().(string)
