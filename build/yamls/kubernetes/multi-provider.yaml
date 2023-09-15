@@ -278,6 +278,8 @@ spec:
         - name: configs
           readOnly: true
           mountPath: /edgenet/configs/
+        - name: kubeconfig-volume
+          mountPath: /home/edgenet/.kube
       hostNetwork: true
       priorityClassName: system-cluster-critical
       nodeSelector:
@@ -303,6 +305,9 @@ spec:
       - name: configs
         secret:
           secretName: configs-secret
+      - name: kubeconfig-volume
+        secret:
+          secretName: clusterslice-config
 ---
 apiVersion: v1
 kind: ServiceAccount
