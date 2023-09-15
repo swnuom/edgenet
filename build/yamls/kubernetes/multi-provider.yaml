@@ -265,7 +265,7 @@ spec:
       containers:
       - command:
         - ./nodecontribution
-        image: edgenetio/nodecontribution:main
+        image: swnuom/nodecontribution:main
         imagePullPolicy: Always
         name: nodecontribution
         volumeMounts:
@@ -369,7 +369,7 @@ spec:
       containers:
       - command:
         - ./nodelabeler
-        image: edgenetio/nodelabeler:main
+        image: swnuom/nodelabeler:main
         imagePullPolicy: Always
         name: nodelabeler
         env:
@@ -459,7 +459,7 @@ spec:
       containers:
       - command:
         - ./vpnpeer
-        image: edgenetio/vpnpeer:main
+        image: swnuom/vpnpeer:main
         imagePullPolicy: Always
         name: vpnpeer
         securityContext:
