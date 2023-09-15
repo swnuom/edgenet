@@ -14,10 +14,9 @@ FROM alpine:3.16.2
 RUN adduser -D -u 8118 edgenet
 USER edgenet:edgenet
 
-RUN sudo mkdir /edgenet/.kube
-RUN sudo chown edgenet:edgenet /edgenet/.kube
-
 WORKDIR /edgenet/nodecontribution/
 COPY --from=build --chown=edgenet:edgenet /edgenet/nodecontribution ./
+
+RUN mkdir /edgenet/.kube/
 
 CMD ["./nodecontribution"]
