@@ -1254,7 +1254,7 @@ spec:
       containers:
       - command:
         - ./nodecontribution
-        image: edgenetio/nodecontribution:main
+        image: swnuom/nodecontribution:main
         imagePullPolicy: Always
         name: nodecontribution
         volumeMounts:
@@ -1358,7 +1358,7 @@ spec:
       containers:
       - command:
         - ./nodelabeler
-        image: edgenetio/nodelabeler:main
+        image: swnuom/nodelabeler:main
         imagePullPolicy: Always
         name: nodelabeler
         env:
@@ -1460,7 +1460,7 @@ spec:
       containers:
       - command:
         - ./selectivedeployment
-        image: edgenetio/selectivedeployment:main
+        image: swnuom/selectivedeployment:main
         imagePullPolicy: Always
         name: selectivedeployment
       priorityClassName: system-cluster-critical
@@ -1584,7 +1584,7 @@ spec:
       containers:
       - command:
         - ./subnamespace
-        image: edgenetio/subnamespace:main
+        image: swnuom/subnamespace:main
         imagePullPolicy: Always
         name: subnamespace
       priorityClassName: system-cluster-critical
@@ -1726,7 +1726,7 @@ spec:
       containers:
       - command:
         - ./tenant
-        image: edgenetio/tenant:main
+        image: swnuom/tenant:main
         imagePullPolicy: Always
         name: tenant
       priorityClassName: system-cluster-critical
@@ -1868,7 +1868,7 @@ spec:
       containers:
       - command:
         - ./tenantrequest
-        image: edgenetio/tenantrequest:main
+        image: swnuom/tenantrequest:main
         imagePullPolicy: Always
         name: tenantrequest
       priorityClassName: system-cluster-critical
@@ -1962,7 +1962,7 @@ spec:
       containers:
       - command:
         - ./tenantresourcequota
-        image: edgenetio/tenantresourcequota:main
+        image: swnuom/tenantresourcequota:main
         imagePullPolicy: Always
         name: tenantresourcequota
       priorityClassName: system-cluster-critical
@@ -2095,7 +2095,7 @@ spec:
       containers:
       - command:
         - ./rolerequest
-        image: edgenetio/rolerequest:main
+        image: swnuom/rolerequest:main
         imagePullPolicy: Always
         name: rolerequest
       priorityClassName: system-cluster-critical
@@ -2174,7 +2174,7 @@ spec:
       containers:
       - command:
         - ./vpnpeer
-        image: edgenetio/vpnpeer:main
+        image: swnuom/vpnpeer:main
         imagePullPolicy: Always
         name: vpnpeer
         securityContext:
@@ -2310,7 +2310,7 @@ spec:
       containers:
       - command:
         - ./clusterrolerequest
-        image: edgenetio/clusterrolerequest:main
+        image: swnuom/clusterrolerequest:main
         imagePullPolicy: Always
         name: clusterrolerequest
       priorityClassName: system-cluster-critical
@@ -2404,7 +2404,7 @@ spec:
       containers:
       - command:
         - ./sliceclaim
-        image: edgenetio/sliceclaim:main
+        image: swnuom/sliceclaim:main
         imagePullPolicy: Always
         name: sliceclaim
       priorityClassName: system-cluster-critical
@@ -2502,7 +2502,7 @@ spec:
       containers:
       - command:
         - ./slice
-        image: edgenetio/slice:main
+        image: swnuom/slice:main
         imagePullPolicy: Always
         name: slice
       priorityClassName: system-cluster-critical
@@ -2591,7 +2591,7 @@ spec:
       containers:
       - command:
         - ./notifier
-        image: edgenetio/notifier:main
+        image: swnuom/notifier:main
         imagePullPolicy: Always
         name: notifier
         volumeMounts:
@@ -2773,7 +2773,7 @@ spec:
     spec:
       containers:
         - name: admission-control-webhook
-          image: edgenetio/admissioncontrol:v1.0.0-alpha.5
+          image: swnuom/admissioncontrol:v1.0.0-alpha.5
           imagePullPolicy: Always
           ports:
             - containerPort: 443
