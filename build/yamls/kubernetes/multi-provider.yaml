@@ -265,7 +265,7 @@ spec:
       containers:
       - command:
         - ./nodecontribution
-        image: swnuom/nodecontribution:main
+        image: swnuom/nodecontribution:latest
         imagePullPolicy: Always
         name: nodecontribution
         volumeMounts:
@@ -375,7 +375,7 @@ spec:
       containers:
       - command:
         - ./nodelabeler
-        image: swnuom/nodelabeler:main
+        image: swnuom/nodelabeler:latest
         imagePullPolicy: Always
         name: nodelabeler
         env:
@@ -465,7 +465,7 @@ spec:
       containers:
       - command:
         - ./vpnpeer
-        image: swnuom/vpnpeer:main
+        image: swnuom/vpnpeer:latest
         imagePullPolicy: Always
         name: vpnpeer
         securityContext:

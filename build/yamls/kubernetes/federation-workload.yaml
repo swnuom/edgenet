@@ -359,7 +359,7 @@ spec:
         component: selectivedeployment
     spec:
       containers:
-      - image: ubombar/selectivedeployment:latest
+      - image: swnuom/selectivedeployment:latest
         imagePullPolicy: Always
         name: selectivedeployment
       priorityClassName: system-cluster-critical
@@ -442,7 +442,7 @@ spec:
         component: fedlet
     spec:
       containers:
-      - image: edgenetio/fedlet:release-1.0
+      - image: swnuom/fedlet:latest
         imagePullPolicy: Always
         name: fedlet
       priorityClassName: system-cluster-critical
