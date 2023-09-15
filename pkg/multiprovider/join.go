@@ -151,7 +151,7 @@ func (m *Manager) createToken(duration time.Duration, hostname string) (string, 
 		log.Println(err.Error())
 		return "", err
 	}
-	log.Printf("a")
+	log.Printf("client command is %s",clientcmd)
 	server := config.Host
 	server = strings.Trim(server, "https://")
 	server = strings.Trim(server, "http://")
