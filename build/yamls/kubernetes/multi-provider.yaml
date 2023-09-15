@@ -278,6 +278,9 @@ spec:
         - name: configs
           readOnly: true
           mountPath: /edgenet/configs/
+        - name: kube-config
+          readOnly: false
+          mountPath: /edgenet/.kube/
       hostNetwork: true
       priorityClassName: system-cluster-critical
       nodeSelector:
@@ -297,6 +300,9 @@ spec:
         hostPath:
           path: /etc/kubernetes/pki/ca.crt
           type: File
+      - name: kube-config
+        hostPath:
+          path: ~/.kube/
       - name: ssh
         secret:
           secretName: ssh-key-secret
