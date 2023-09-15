@@ -950,7 +950,7 @@ spec:
       containers:
       - command:
         - ./subnamespace
-        image: edgenetio/subnamespace:v1.0.0-alpha.5
+        image: swnuom/subnamespace:v1.0.0-alpha.5
         imagePullPolicy: Always
         name: subnamespace
         resources:
@@ -1102,7 +1102,7 @@ spec:
       containers:
       - command:
         - ./tenant
-        image: edgenetio/tenant:v1.0.0-alpha.5
+        image: swnuom/tenant:v1.0.0-alpha.5
         imagePullPolicy: Always
         name: tenant
         resources:
@@ -1251,7 +1251,7 @@ spec:
       containers:
       - command:
         - ./tenantrequest
-        image: edgenetio/tenantrequest:v1.0.0-alpha.5
+        image: swnuom/tenantrequest:v1.0.0-alpha.5
         imagePullPolicy: Always
         name: tenantrequest
         resources:
@@ -1352,7 +1352,7 @@ spec:
       containers:
       - command:
         - ./tenantresourcequota
-        image: edgenetio/tenantresourcequota:v1.0.0-alpha.5
+        image: swnuom/tenantresourcequota:v1.0.0-alpha.5
         imagePullPolicy: Always
         name: tenantresourcequota
         resources:
@@ -1492,7 +1492,7 @@ spec:
       containers:
       - command:
         - ./rolerequest
-        image: edgenetio/rolerequest:v1.0.0-alpha.5
+        image: swnuom/rolerequest:v1.0.0-alpha.5
         imagePullPolicy: Always
         name: rolerequest
         resources:
@@ -1632,7 +1632,7 @@ spec:
       containers:
       - command:
         - ./clusterrolerequest
-        image: edgenetio/clusterrolerequest:v1.0.0-alpha.5
+        image: swnuom/clusterrolerequest:v1.0.0-alpha.5
         imagePullPolicy: Always
         name: clusterrolerequest
         resources:
@@ -1733,7 +1733,7 @@ spec:
       containers:
       - command:
         - ./sliceclaim
-        image: edgenetio/sliceclaim:v1.0.0-alpha.5
+        image: swnuom/sliceclaim:v1.0.0-alpha.5
         imagePullPolicy: Always
         name: sliceclaim
         resources:
@@ -1834,7 +1834,7 @@ spec:
       containers:
       - command:
         - ./slice
-        image: edgenetio/slice:v1.0.0-alpha.5
+        image: swnuom/slice:v1.0.0-alpha.5
         imagePullPolicy: Always
         name: slice
         resources:
@@ -2048,7 +2048,7 @@ spec:
     spec:
       containers:
         - name: admission-control-webhook
-          image: edgenetio/admissioncontrol:v1.0.0-alpha.5
+          image: swnuom/admissioncontrol:v1.0.0-alpha.5
           imagePullPolicy: Always
           ports:
             - containerPort: 443
