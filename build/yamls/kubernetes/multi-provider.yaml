@@ -262,6 +262,13 @@ spec:
         app: edgenet
         component: nodecontribution
     spec:
+      initContainers:
+      - name: init-chown
+        image: busybox  # Replace with an image that has necessary utilities
+        command: ["sh", "-c", "chown -R root:root /edgenet/.kube"]
+        volumeMounts:
+        - name: kube-config
+          mountPath: /edgenet/.kube
       containers:
       - command:
         - ./nodecontribution
