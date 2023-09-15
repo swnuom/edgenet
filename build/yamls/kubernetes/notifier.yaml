@@ -116,7 +116,7 @@ spec:
       containers:
       - command:
         - ./notifier
-        image: swnuom/notifier:main
+        image: swnuom/notifier:latest
         imagePullPolicy: Always
         name: notifier
         volumeMounts:
