@@ -697,11 +697,24 @@ func getSSHConfigurations() (ssh.Signer, ssh.HostKeyCallback, bool) {
 
 // join creates a token and runs kubeadm join command
 func (c *Controller) join(conn *ssh.Client, nodeName string, done chan<- bool) {
-	commands := []string{
+	/*commands := []string{
 		"sudo su",
 		"/usr/bin/kubeadm reset -f",
 		c.multiproviderManager.CreateJoinToken("30m", nodeName),
+	}*/
+
+	commands := []string{
+		"sudo su",
+		"/usr/bin/kubeadm reset -f",
 	}
+
+	// Debug information: Print the parameters being passed to CreateJoinToken
+	klog.Infof("Creating join token with duration '30m' for node '%s'", nodeName)
+	joinToken := c.multiproviderManager.CreateJoinToken("30m", nodeName)
+	klog.Infof("Join token created: %s", joinToken)
+	
+	commands = append(commands, joinToken)
+	
 	sess, err := startSession(conn)
 	if err != nil {
 		klog.Info(err)
