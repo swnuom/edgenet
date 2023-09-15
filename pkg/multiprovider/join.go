@@ -98,14 +98,12 @@ func (m *Manager) createToken(duration time.Duration, hostname string) (string, 
 		log.Printf("Error generating token to upload certs: %s", err)
 		return "", err
 	}
-        log.Printf("Generated token: %s", tokenStr) // Debug info: Log generated token
  
 	token, err := kubeadmtypes.NewBootstrapTokenString(tokenStr)
 	if err != nil {
 		log.Printf("Error creating upload certs token: %s", err)
 		return "", err
 	}
-        log.Printf("Created BootstrapToken: %+v", token) // Debug info: Log created BootstrapToken
  
 	bootstrapToken := kubeadmtypes.BootstrapToken{}
 	bootstrapToken.Description = fmt.Sprintf("EdgeNet token for adding node called %s", hostname)
@@ -138,20 +136,16 @@ func (m *Manager) createToken(duration time.Duration, hostname string) (string, 
 			return "", err
 		}
 	}
-        log.Printf("specifying kubeconfig path")
 	// This is to get server info
 	kubeconfigPath := "/edgenet/.kube/config"
 	if flag.Lookup("kubeconfig-path") != nil {
-		log.Printf("flag kubeconfig-path is null")
 		kubeconfigPath = flag.Lookup("kubeconfig-path").Value.(flag.Getter).Get().(string)
-		log.Printf("kubeconfigPath is set to: %s", kubeconfigPath)
 	}
 	config, err := clientcmd.BuildConfigFromFlags("", kubeconfigPath)
 	if err != nil {
 		log.Println(err.Error())
 		return "", err
 	}
-	log.Printf("config is %s",config)
 	server := config.Host
 	server = strings.Trim(server, "https://")
 	server = strings.Trim(server, "http://")
@@ -159,14 +153,12 @@ func (m *Manager) createToken(duration time.Duration, hostname string) (string, 
 	if flag.Lookup("ca-path") != nil {
 		pathCA = flag.Lookup("ca-path").Value.(flag.Getter).Get().(string)
 	}
-	log.Printf("b")
 	// This reads CA cert to be hashed
 	certs, err := cert.CertsFromFile(pathCA)
 	if err != nil {
 		log.Println(err)
 		return "", err
 	}
-	log.Printf("c")
 	var CA string
 	for i, cert := range certs {
 		if i == 0 {
@@ -174,7 +166,6 @@ func (m *Manager) createToken(duration time.Duration, hostname string) (string, 
 			CA = fmt.Sprintf("sha256:%x", hashedCA)
 		}
 	}
-        log.Printf("d")
 	joinCommand := fmt.Sprintf("kubeadm join %s --token %s --discovery-token-ca-cert-hash %s", server, tokenStr, CA)
         log.Printf("Join command: %s", joinCommand) // Debug info: Log join command
 
