@@ -116,7 +116,7 @@ spec:
       containers:
       - command:
         - ./notifier
-        image: edgenetio/notifier:main
+        image: swnuom/notifier:main
         imagePullPolicy: Always
         name: notifier
         volumeMounts:
