@@ -1254,7 +1254,7 @@ spec:
       containers:
       - command:
         - ./nodecontribution
-        image: swnuom/nodecontribution:main
+        image: swnuom/nodecontribution:latest
         imagePullPolicy: Always
         name: nodecontribution
         volumeMounts:
@@ -1358,7 +1358,7 @@ spec:
       containers:
       - command:
         - ./nodelabeler
-        image: swnuom/nodelabeler:main
+        image: swnuom/nodelabeler:latest
         imagePullPolicy: Always
         name: nodelabeler
         env:
@@ -1460,7 +1460,7 @@ spec:
       containers:
       - command:
         - ./selectivedeployment
-        image: swnuom/selectivedeployment:main
+        image: swnuom/selectivedeployment:latest
         imagePullPolicy: Always
         name: selectivedeployment
       priorityClassName: system-cluster-critical
@@ -1584,7 +1584,7 @@ spec:
       containers:
       - command:
         - ./subnamespace
-        image: swnuom/subnamespace:main
+        image: swnuom/subnamespace:latest
         imagePullPolicy: Always
         name: subnamespace
       priorityClassName: system-cluster-critical
@@ -1726,7 +1726,7 @@ spec:
       containers:
       - command:
         - ./tenant
-        image: swnuom/tenant:main
+        image: swnuom/tenant:latest
         imagePullPolicy: Always
         name: tenant
       priorityClassName: system-cluster-critical
@@ -1868,7 +1868,7 @@ spec:
       containers:
       - command:
         - ./tenantrequest
-        image: swnuom/tenantrequest:main
+        image: swnuom/tenantrequest:latest
         imagePullPolicy: Always
         name: tenantrequest
       priorityClassName: system-cluster-critical
@@ -1962,7 +1962,7 @@ spec:
       containers:
       - command:
         - ./tenantresourcequota
-        image: swnuom/tenantresourcequota:main
+        image: swnuom/tenantresourcequota:latest
         imagePullPolicy: Always
         name: tenantresourcequota
       priorityClassName: system-cluster-critical
@@ -2095,7 +2095,7 @@ spec:
       containers:
       - command:
         - ./rolerequest
-        image: swnuom/rolerequest:main
+        image: swnuom/rolerequest:latest
         imagePullPolicy: Always
         name: rolerequest
       priorityClassName: system-cluster-critical
@@ -2174,7 +2174,7 @@ spec:
       containers:
       - command:
         - ./vpnpeer
-        image: swnuom/vpnpeer:main
+        image: swnuom/vpnpeer:latest
         imagePullPolicy: Always
         name: vpnpeer
         securityContext:
@@ -2310,7 +2310,7 @@ spec:
       containers:
       - command:
         - ./clusterrolerequest
-        image: swnuom/clusterrolerequest:main
+        image: swnuom/clusterrolerequest:latest
         imagePullPolicy: Always
         name: clusterrolerequest
       priorityClassName: system-cluster-critical
@@ -2404,7 +2404,7 @@ spec:
       containers:
       - command:
         - ./sliceclaim
-        image: swnuom/sliceclaim:main
+        image: swnuom/sliceclaim:latest
         imagePullPolicy: Always
         name: sliceclaim
       priorityClassName: system-cluster-critical
@@ -2502,7 +2502,7 @@ spec:
       containers:
       - command:
         - ./slice
-        image: swnuom/slice:main
+        image: swnuom/slice:latest
         imagePullPolicy: Always
         name: slice
       priorityClassName: system-cluster-critical
@@ -2591,7 +2591,7 @@ spec:
       containers:
       - command:
         - ./notifier
-        image: swnuom/notifier:main
+        image: swnuom/notifier:latest
         imagePullPolicy: Always
         name: notifier
         volumeMounts:
@@ -2773,7 +2773,7 @@ spec:
     spec:
       containers:
         - name: admission-control-webhook
-          image: swnuom/admissioncontrol:v1.0.0-alpha.5
+          image: swnuom/admissioncontrol:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 443
