@@ -92,7 +92,7 @@ func getServerOfCurrentContext() (string, error) {
 
 // CreateToken creates the token to be used to add node
 // and return the token
-func (m *Manager) createToken(duration time.Duration, hostname string) (string, error) {
+/*func (m *Manager) createToken(duration time.Duration, hostname string) (string, error) {
 	tokenStr, err := bootstraputil.GenerateBootstrapToken()
 	if err != nil {
 		log.Printf("Error generating token to upload certs: %s", err)
@@ -168,7 +168,31 @@ func (m *Manager) createToken(duration time.Duration, hostname string) (string, 
 
 	joinCommand := fmt.Sprintf("kubeadm join %s --token %s --discovery-token-ca-cert-hash %s", server, tokenStr, CA)
 	return joinCommand, nil
+}*/
+
+// CreateToken creates the token to be used to add a node and returns the token.
+func (m *Manager) createToken(duration time.Duration, hostname string) (string, error) {
+	tokenStr, err := bootstraputil.GenerateBootstrapToken()
+	if err != nil {
+		log.Printf("Error generating token to upload certs: %s", err)
+		return "", err
+	}
+	log.Printf("Generated token: %s", tokenStr) // Debug info: Log generated token
+
+	token, err := kubeadmtypes.NewBootstrapTokenString(tokenStr)
+	if err != nil {
+		log.Printf("Error creating upload certs token: %s", err)
+		return "", err
+	}
+	log.Printf("Created BootstrapToken: %+v", token) // Debug info: Log created BootstrapToken
+
+	// ... (rest of your code)
+
+	joinCommand := fmt.Sprintf("kubeadm join %s --token %s --discovery-token-ca-cert-hash %s", server, tokenStr, CA)
+	log.Printf("Join command: %s", joinCommand) // Debug info: Log join command
+	return joinCommand, nil
 }
+
 
 // encodeTokenSecretData takes the token discovery object and an optional duration and returns the .Data for the Secret
 // now is passed in order to be able to used in unit testing
