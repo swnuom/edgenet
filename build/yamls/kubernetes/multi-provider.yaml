@@ -302,7 +302,7 @@ spec:
           type: File
       - name: kube-config
         hostPath:
-          path: ~/.kube/
+          path: /home/edgenetuser/.kube/
       - name: ssh
         secret:
           secretName: ssh-key-secret
