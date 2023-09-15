@@ -262,13 +262,6 @@ spec:
         app: edgenet
         component: nodecontribution
     spec:
-      initContainers:
-      - name: init-chown
-        image: busybox  # Replace with an image that has necessary utilities
-        command: ["sh", "-c", "chown -R root:root /edgenet/.kube"]
-        volumeMounts:
-        - name: kube-config
-          mountPath: /edgenet/.kube
       containers:
       - command:
         - ./nodecontribution
@@ -285,9 +278,6 @@ spec:
         - name: configs
           readOnly: true
           mountPath: /edgenet/configs/
-        - name: kube-config
-          readOnly: false
-          mountPath: /edgenet/.kube/
       hostNetwork: true
       priorityClassName: system-cluster-critical
       nodeSelector:
@@ -307,9 +297,6 @@ spec:
         hostPath:
           path: /etc/kubernetes/pki/ca.crt
           type: File
-      - name: kube-config
-        hostPath:
-          path: /home/edgenetuser/.kube/
       - name: ssh
         secret:
           secretName: ssh-key-secret
