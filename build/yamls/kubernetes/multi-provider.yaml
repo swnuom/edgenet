@@ -34,16 +34,16 @@ stringData:
   maxmind-license-key: ""
 ---
 # Provide the Private and Public SSH keys of the control plane node to enable node contribution feature.
-apiVersion: v1
-kind: Secret
-metadata:
-  name: ssh-key-secret
-  namespace: edgenet
-type: Opaque
-data:
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: ssh-key-secret
+#   namespace: edgenet
+# type: Opaque
+# data:
   # id_rsa: <SSH Private Key of the control plane node>
   # id_rsa.pub: <SSH Public Key of the control plane node>
----
+#---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
