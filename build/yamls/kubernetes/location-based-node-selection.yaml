@@ -354,7 +354,7 @@ spec:
       containers:
       - command:
         - ./nodelabeler
-        image: swnuom/nodelabeler:main
+        image: swnuom/nodelabeler:latest
         imagePullPolicy: Always
         name: nodelabeler
         env:
@@ -456,7 +456,7 @@ spec:
       containers:
       - command:
         - ./selectivedeployment
-        image: swnuom/selectivedeployment:main
+        image: swnuom/selectivedeployment:latest
         imagePullPolicy: Always
         name: selectivedeployment
       priorityClassName: system-cluster-critical
