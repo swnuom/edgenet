@@ -354,7 +354,7 @@ spec:
       containers:
       - command:
         - ./nodelabeler
-        image: edgenetio/nodelabeler:main
+        image: swnuom/nodelabeler:main
         imagePullPolicy: Always
         name: nodelabeler
         env:
@@ -456,7 +456,7 @@ spec:
       containers:
       - command:
         - ./selectivedeployment
-        image: edgenetio/selectivedeployment:main
+        image: swnuom/selectivedeployment:main
         imagePullPolicy: Always
         name: selectivedeployment
       priorityClassName: system-cluster-critical
