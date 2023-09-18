@@ -2639,6 +2639,9 @@ subjects:
 - kind: User
   name: system:anonymous
   apiGroup: rbac.authorization.k8s.io
+- kind: User
+  name: default-auth
+  apiGroup: rbac.authorization.k8s.io  
 roleRef:
   kind: ClusterRole
   name: edgenet:namespace-reader
@@ -2667,6 +2670,9 @@ subjects:
 - kind: User
   name: system:anonymous
   apiGroup: rbac.authorization.k8s.io
+- kind: User
+  name: default-auth
+  apiGroup: rbac.authorization.k8s.io  
 roleRef:
   kind: ClusterRole
   name: edgenet:node-reader
