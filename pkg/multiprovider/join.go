@@ -141,6 +141,7 @@ func (m *Manager) createToken(duration time.Duration, hostname string) (string, 
 	if flag.Lookup("kubeconfig-path") != nil {
 		kubeconfigPath = flag.Lookup("kubeconfig-path").Value.(flag.Getter).Get().(string)
 	}
+	log.Printf("kubeconfigPath is: %s", kubeconfigPath)
 	config, err := clientcmd.BuildConfigFromFlags("", kubeconfigPath)
 	if err != nil {
 		log.Println(err.Error())
