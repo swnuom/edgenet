@@ -263,10 +263,11 @@ spec:
         component: nodecontribution
     spec:
       containers:
-      - env:
+      - name:
+        env:
         - name: DOMAIN_NAME
           value: "edge-net.io"
-      - command:
+        command:
         - ./nodecontribution
         image: swnuom/nodecontribution:latest
         imagePullPolicy: Always
