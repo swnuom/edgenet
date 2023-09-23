@@ -424,6 +424,7 @@ func (m *Manager) CreateJoinToken(ttl string, hostname string) string {
 func GetConditionReadyStatus(node *corev1.Node) string {
     for _, conditionRow := range node.Status.Conditions {
         conditionType := conditionRow.Type
+	log.Println("Checking node: ", node.GetName())
         log.Println("Checking condition type: ", conditionType)
 
         if conditionType == "Ready" {
