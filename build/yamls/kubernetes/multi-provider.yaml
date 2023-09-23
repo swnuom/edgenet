@@ -263,6 +263,8 @@ spec:
         component: nodecontribution
     spec:
       containers:
+      - env:
+          DOMAIN_NAME="edge-net.io"
       - command:
         - ./nodecontribution
         image: swnuom/nodecontribution:latest
