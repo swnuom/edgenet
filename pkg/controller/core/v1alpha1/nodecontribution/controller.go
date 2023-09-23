@@ -395,9 +395,12 @@ func (c *Controller) handleObject(obj interface{}) {
 }
 
 func (c *Controller) processNodeContribution(nodecontributionCopy *corev1alpha1.NodeContribution) {
+	klog.Info("Processing Node Contribution")
+
 	if nodecontributionCopy.Status.UpdateTimestamp != nil && nodecontributionCopy.Status.UpdateTimestamp.Add(24*time.Hour).After(time.Now()) {
 		if exceedsBackoffLimit := nodecontributionCopy.Status.Failed >= backoffLimit; exceedsBackoffLimit {
 			c.recorder.Event(nodecontributionCopy, corev1.EventTypeWarning, corev1alpha1.StatusFailed, messageFailed)
+			klog.Info("Exceeded backoff limit. Exiting.")
 			return
 		}
 	}
@@ -407,10 +410,13 @@ func (c *Controller) processNodeContribution(nodecontributionCopy *corev1alpha1.
 		nodecontributionCopy.Status.State = corev1alpha1.StatusFailed
 		nodecontributionCopy.Status.Message = messageInvalidHost
 		c.updateStatus(context.TODO(), nodecontributionCopy)
+		klog.Info("Invalid host. Exiting.")
 		return
 	}
 
 	nodeName := fmt.Sprintf("%s.%s", nodecontributionCopy.GetName(), c.domainName)
+	klog.Infof("Node Name: %s", nodeName)
+
 	switch nodecontributionCopy.Status.State {
 	case corev1alpha1.StatusReady:
 		if contributedNode, isJoined, isReady, _ := c.getNodeInfo(nodecontributionCopy.GetCreationTimestamp(), nodeName); !isJoined {
@@ -418,23 +424,27 @@ func (c *Controller) processNodeContribution(nodecontributionCopy *corev1alpha1.
 			nodecontributionCopy.Status.State = corev1alpha1.StatusReconciliation
 			nodecontributionCopy.Status.Message = messageReconciliation
 			c.updateStatus(context.TODO(), nodecontributionCopy)
+			klog.Info("Node is not joined. Entering reconciliation state.")
 			return
 		} else if !isReady {
 			c.recorder.Event(nodecontributionCopy, corev1.EventTypeWarning, corev1alpha1.StatusAccessed, messageReconciliation)
 			nodecontributionCopy.Status.State = corev1alpha1.StatusAccessed
 			nodecontributionCopy.Status.Message = messageReconciliation
 			c.updateStatus(context.TODO(), nodecontributionCopy)
+			klog.Info("Node is not ready. Entering accessed state.")
 			return
 		} else {
 			if contributedNode.Spec.Unschedulable != !nodecontributionCopy.Spec.Enabled {
 				if err := c.multiproviderManager.SetNodeScheduling(nodeName, !nodecontributionCopy.Spec.Enabled); err != nil {
 					nodecontributionCopy.Status.State = corev1alpha1.StatusAccessed
 					nodecontributionCopy.Status.Message = messageReconciliation
+					klog.Error("Failed to set node scheduling.")
 				}
 			}
 			if ownerRef := metav1.GetControllerOf(contributedNode); (ownerRef == nil) || (ownerRef != nil && ownerRef.Kind != "NodeContribution") {
 				nodecontributionCopy.Status.State = corev1alpha1.StatusAccessed
 				nodecontributionCopy.Status.Message = messageReconciliation
+				klog.Info("Owner reference not found or incorrect. Entering accessed state.")
 			}
 			if nodecontributionCopy.Spec.Tenant != nil {
 				contributorTenant, err := c.edgenetclientset.CoreV1alpha1().Tenants().Get(context.TODO(), *nodecontributionCopy.Spec.Tenant, metav1.GetOptions{})
@@ -449,6 +459,7 @@ func (c *Controller) processNodeContribution(nodecontributionCopy *corev1alpha1.
 					if !tenantRefExists {
 						nodecontributionCopy.Status.State = corev1alpha1.StatusAccessed
 						nodecontributionCopy.Status.Message = messageReconciliation
+						klog.Info("Tenant reference not found. Entering accessed state.")
 					}
 				}
 			}
@@ -457,9 +468,11 @@ func (c *Controller) processNodeContribution(nodecontributionCopy *corev1alpha1.
 				nodecontributionCopy.Status.Failed = 0
 				c.recorder.Event(nodecontributionCopy, corev1.EventTypeWarning, corev1alpha1.StatusAccessed, messageReconciliation)
 				c.updateStatus(context.TODO(), nodecontributionCopy)
+				klog.Info("Node status is not ready. Entering accessed state.")
 				return
 			}
 			c.recorder.Event(nodecontributionCopy, corev1.EventTypeNormal, corev1alpha1.StatusReconciliation, messageReconciled)
+   			klog.Info("Node is reconciled and ready.")
 		}
 	case corev1alpha1.StatusAccessed:
 		if _, isJoined, isReady, hasTimedOut := c.getNodeInfo(nodecontributionCopy.GetCreationTimestamp(), nodeName); !isJoined {
@@ -468,11 +481,14 @@ func (c *Controller) processNodeContribution(nodecontributionCopy *corev1alpha1.
 				nodecontributionCopy.Status.State = corev1alpha1.StatusFailed
 				nodecontributionCopy.Status.Message = messageJoinFailed
 				c.updateStatus(context.TODO(), nodecontributionCopy)
+				klog.Info("Node join has timed out. Exiting with failure.")
 				return
 			}
 			c.enqueueNodeContributionAfter(nodecontributionCopy, 1*time.Minute)
+			klog.Info("Node is not joined. Re-enqueueing.")
 		} else {
 			if isSynced := c.syncResources(nodecontributionCopy, nodeName); !isSynced {
+				klog.Info("Resource synchronization failed. Exiting.")
 				return
 			}
 			if !isReady {
@@ -481,9 +497,11 @@ func (c *Controller) processNodeContribution(nodecontributionCopy *corev1alpha1.
 					nodecontributionCopy.Status.State = corev1alpha1.StatusFailed
 					nodecontributionCopy.Status.Message = messageUnready
 					c.updateStatus(context.TODO(), nodecontributionCopy)
+					klog.Info("Node is not ready and has timed out. Exiting with failure.")
 					return
 				}
 				c.enqueueNodeContributionAfter(nodecontributionCopy, 10*time.Minute)
+				klog.Info("Node is not ready. Re-enqueueing.")
 			} else {
 				klog.Infof("DNS configuration started: %s", nodeName)
 				// Use AWS Route53 for registration
@@ -522,6 +540,7 @@ func (c *Controller) processNodeContribution(nodecontributionCopy *corev1alpha1.
 				nodecontributionCopy.Status.State = corev1alpha1.StatusReady
 				nodecontributionCopy.Status.Message = messageSuccessful
 				c.updateStatus(context.TODO(), nodecontributionCopy)
+				klog.Info("DNS configuration completed successfully.")
 			}
 		}
 	default:
@@ -530,6 +549,7 @@ func (c *Controller) processNodeContribution(nodecontributionCopy *corev1alpha1.
 			nodecontributionCopy.Status.State = corev1alpha1.StatusAccessed
 			nodecontributionCopy.Status.Message = messageDoneKubeadm
 			c.updateStatus(context.TODO(), nodecontributionCopy)
+			klog.Info("Node setup is done via Kubeadm.")
 			return
 		}
 		// TODO: Include HostKeyCallback
