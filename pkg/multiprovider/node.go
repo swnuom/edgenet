@@ -410,7 +410,7 @@ func (m *Manager) CreateJoinToken(ttl string, hostname string) string {
 }
 
 // GetConditionReadyStatus picks the ready status of node
-func GetConditionReadyStatus(node *corev1.Node) string {
+/*func GetConditionReadyStatus(node *corev1.Node) string {
 	for _, conditionRow := range node.Status.Conditions {
 		if conditionType := conditionRow.Type; conditionType == "Ready" {
 			return string(conditionRow.Status)
@@ -419,4 +419,24 @@ func GetConditionReadyStatus(node *corev1.Node) string {
 		}
 	}
 	return ""
+}*/
+
+func GetConditionReadyStatus(node *corev1.Node) string {
+    for _, conditionRow := range node.Status.Conditions {
+        conditionType := conditionRow.Type
+        klog.Infof("Checking condition type: %s", conditionType)
+
+        if conditionType == "Ready" {
+            status := string(conditionRow.Status)
+            klog.Infof("Found Ready condition with status: %s", status)
+            return status
+        } else if conditionType == "NotReady" {
+            klog.Info("Found NotReady condition, returning False")
+            return "False"
+        }
+    }
+
+    klog.Info("No Ready or NotReady conditions found")
+    return ""
 }
+
