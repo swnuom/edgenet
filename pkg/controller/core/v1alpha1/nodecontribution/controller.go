@@ -662,6 +662,7 @@ func (c *Controller) formOwnerReferences(nodecontributionCopy *corev1alpha1.Node
 }
 func (c *Controller) getNodeInfo(contributionCreationTimestamp metav1.Time, nodeName string) (contributedNode *corev1.Node, isJoined bool, isReady bool, hasTimedOut bool) {
 	var err error
+	klog.Infof("getNodeInfo '%s'", nodeName)
 	if contributedNode, err = c.nodesLister.Get(nodeName); err == nil {
 		if multiprovider.GetConditionReadyStatus(contributedNode) == string(corev1.ConditionTrue) {
 			isJoined, isReady = true, true
