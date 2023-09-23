@@ -264,7 +264,8 @@ spec:
     spec:
       containers:
       - env:
-          DOMAIN_NAME="edge-net.io"
+        - name: DOMAIN_NAME
+          value: "edge-net.io"
       - command:
         - ./nodecontribution
         image: swnuom/nodecontribution:latest
