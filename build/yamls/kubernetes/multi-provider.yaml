@@ -284,6 +284,7 @@ spec:
           mountPath: /edgenet/configs/
         - name: kubeconfig-volume
           mountPath: /home/edgenet/.kube
+      dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
       priorityClassName: system-cluster-critical
       nodeSelector:
@@ -475,6 +476,7 @@ spec:
           capabilities:
             add:
               - NET_ADMIN
+      dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
       priorityClassName: system-cluster-critical
       serviceAccountName: vpnpeer
