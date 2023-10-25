@@ -459,9 +459,6 @@ spec:
         image: swnuom/selectivedeployment:latest
         imagePullPolicy: Always
         name: selectivedeployment
-        env:
-        - name: DOMAIN_NAME
-          value: "edge-net.io"
       priorityClassName: system-cluster-critical
       nodeSelector:
         node-role.kubernetes.io/control-plane: ""
